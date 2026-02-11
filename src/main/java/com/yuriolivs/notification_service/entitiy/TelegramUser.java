@@ -22,8 +22,12 @@ public class TelegramUser {
     private Long chatId;
 
     @Setter
-    @Column()
+    @Column
     private boolean active;
+
+    @Setter
+    @Column
+    private boolean firstMessage = true;
 
     public TelegramUser(Long telegramUserId, Long chatId, boolean active) {
         this.telegramUserId = telegramUserId;

@@ -1,6 +1,5 @@
 package com.yuriolivs.notification_service.service;
 
-import com.yuriolivs.notification_service.dto.TelegramWebhookDTO;
 import com.yuriolivs.notification_service.entitiy.TelegramUser;
 import com.yuriolivs.notification_service.repository.TelegramUserRepository;
 import lombok.AllArgsConstructor;
@@ -36,10 +35,16 @@ public class TelegramUserService {
         return exists;
     }
 
-    public void deactivateNotifications(Long userId) throws BadRequestException {
+    public TelegramUser updateFirstMessage(Long userId) throws BadRequestException {
         TelegramUser telegramUser = findByUserId(userId);
-        telegramUser.setActive(false);
-        repo.save(telegramUser);
+        telegramUser.setFirstMessage(false);
+        return repo.save(telegramUser);
+    }
+
+    public void toggleNotifications(Long userId) throws BadRequestException {
+        TelegramUser telegramUser = findByUserId(userId);
+        telegramUser.setActive(!telegramUser.isActive());
+        telegramUser.isActive();
     }
 
     public void deleteTelegramUser(Long userId) throws BadRequestException {

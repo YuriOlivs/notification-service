@@ -44,15 +44,35 @@ public class TelegramWebhookService {
     private void processCommand(Long chatId, String text, Long userId) throws BadRequestException {
         if (text == null || text.isBlank()) return;
 
+        TelegramUser telegramUser = userService.findByUserId(userId);
+
         TelegramCommands command = TelegramCommands.fromText(text);
         if (command == null) return;
 
         switch(command) {
-            case START -> messageService.sendStardardizedMessages(chatId, TelegramMessages.WELCOME);
-            case ACTIVATE -> messageService.sendStardardizedMessages(chatId, TelegramMessages.REACTIVAED);
+            case START -> {
+                if (telegramUser.isFirstMessage()) {
+                    userService.updateFirstMessage(userId);
+                    messageService.sendStardardizedMessages(chatId, TelegramMessages.WELCOME);
+                } else {
+                    messageService.sendStardardizedMessages(chatId, TelegramMessages.START);
+                }
+            }
+            case ACTIVATE -> {
+                if (!telegramUser.isActive()) {
+                    userService.toggleNotifications(userId);
+                    messageService.sendStardardizedMessages(chatId, TelegramMessages.REACTIVAED);
+                } else {
+                    messageService.sendStardardizedMessages(chatId, TelegramMessages.ALREADY_ACTIVATED);
+                }
+            }
             case CANCEL -> {
-                userService.deactivateNotifications(userId);
-                messageService.sendStardardizedMessages(chatId, TelegramMessages.CANCELLED);
+                if (telegramUser.isActive()) {
+                    messageService.sendStardardizedMessages(chatId, TelegramMessages.CANCELLED);
+                    userService.toggleNotifications(userId);
+                } else {
+                    messageService.sendStardardizedMessages(chatId, TelegramMessages.ALREADY_CANCELLED);
+                }
             }
             default -> messageService.sendStardardizedMessages(chatId, TelegramMessages.UNKNOW_COMMAND);
         }
