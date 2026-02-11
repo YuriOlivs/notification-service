@@ -24,13 +24,12 @@ public class TelegramUserService {
 
     public TelegramUser registerIfNotExists(
             Long telegramUserId,
-            String username,
             Long chatId
     ) {
         TelegramUser exists = repo.findByTelegramUserId(telegramUserId);
 
         if(exists == null) {
-            TelegramUser telegramUser = new TelegramUser(telegramUserId, chatId, username, true);
+            TelegramUser telegramUser = new TelegramUser(telegramUserId, chatId, true);
             return repo.save(telegramUser);
         }
 
