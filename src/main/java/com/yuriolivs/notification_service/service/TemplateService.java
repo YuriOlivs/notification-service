@@ -1,7 +1,6 @@
 package com.yuriolivs.notification_service.service;
 
-import com.yuriolivs.notification_service.dto.mail.OrderTrackingDataEmailDTO;
-import com.yuriolivs.notification_service.utils.EmailTemplateEnum;
+import com.yuriolivs.notification_service.utils.EmailTemplate;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +10,7 @@ import java.util.Map;
 
 @Service
 public class TemplateService {
-    public String loadTemplate(EmailTemplateEnum template) throws IOException {
+    public String loadTemplate(EmailTemplate template) throws IOException {
         ClassPathResource resource = new ClassPathResource("templates/" + template.getFilename());
         return new String(resource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
     }
