@@ -4,7 +4,7 @@ import com.yuriolivs.notification_service.dto.mail.MailDTO;
 import com.yuriolivs.notification_service.config.MailFromProperties;
 import com.yuriolivs.notification_service.dto.mail.OrderTrackingMailDTO;
 import com.yuriolivs.notification_service.dto.mail.ProductEmailDTO;
-import com.yuriolivs.notification_service.utils.EmailTemplateEnum;
+import com.yuriolivs.notification_service.utils.EmailTemplate;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
@@ -17,7 +17,6 @@ import tools.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -49,7 +48,7 @@ public class MailService {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
-        String html = templateService.loadTemplate(EmailTemplateEnum.ORDER_TRACKING);
+        String html = templateService.loadTemplate(EmailTemplate.ORDER_TRACKING);
         String productsHtml = this.convertProductsToHtml(dto.products());
 
         ObjectMapper mapper = new ObjectMapper();
@@ -69,11 +68,11 @@ public class MailService {
         helper.setText(renderedHtml, true);
 
         mailSender.send(message);
-        return "Mensagem enviada com sucesso";
+        return "Message sent successfully";
     }
 
     private String convertProductsToHtml(List<ProductEmailDTO> products) throws IOException {
-        String html = templateService.loadTemplate(EmailTemplateEnum.ORDER_TRACKING_ITEM);
+        String html = templateService.loadTemplate(EmailTemplate.ORDER_TRACKING_ITEM);
         StringBuilder resultHtml = new StringBuilder();
 
         ObjectMapper mapper = new ObjectMapper();
