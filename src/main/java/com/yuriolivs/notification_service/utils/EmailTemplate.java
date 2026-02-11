@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum EmailTemplateEnum {
+public enum EmailTemplate {
     ORDER_TRACKING("order-tracking.html"),
     ORDER_TRACKING_ITEM("order-tracking-item.html");
 
