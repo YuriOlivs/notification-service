@@ -32,7 +32,6 @@ public class NotificationService {
 
     public Notification handleNotificationRequest(NotificationRequestDTO dto) throws IOException, MessagingException {
         Optional<Notification> notificationFound = repo.findByIdempotencyKey(dto.idempotencyKey());
-        String template = dto.template().name();
         if (notificationFound.isPresent()) return notificationFound.get();
 
         Notification newNotification = new Notification(
