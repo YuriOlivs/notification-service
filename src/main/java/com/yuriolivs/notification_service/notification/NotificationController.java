@@ -1,0 +1,30 @@
+package com.yuriolivs.notification_service.notification;
+
+import com.yuriolivs.notification_service.notification.dto.NotificationRequestDTO;
+import com.yuriolivs.notification_service.notification.dto.NotificationResponseDTO;
+import com.yuriolivs.notification_service.notification.entities.Notification;
+import jakarta.mail.MessagingException;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
+
+@RestController
+@RequestMapping("/notifications")
+@AllArgsConstructor
+public class NotificationController {
+    private NotificationService service;
+
+    @PostMapping
+    private ResponseEntity<NotificationResponseDTO> handleNotificationRequest(
+            @RequestBody @Valid NotificationRequestDTO dto
+    ) throws MessagingException, IOException {
+        NotificationResponseDTO response = NotificationResponseDTO.from(service.handleNotificationRequest(dto));
+        return ResponseEntity.ok(response);
+    }
+}
