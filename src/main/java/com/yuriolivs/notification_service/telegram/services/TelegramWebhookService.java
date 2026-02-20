@@ -19,7 +19,7 @@ public class TelegramWebhookService {
     private final TelegramUserService userService;
     private static final Logger logger = LoggerFactory.getLogger(TelegramWebhookService.class);
 
-    public void receiveUpdate(TelegramWebhookDTO update) throws BadRequestException {
+    public void receiveUpdate(TelegramWebhookDTO update) {
         if (update.message() == null) return;
 
         MessageFromDTO from = update.message().from();
@@ -41,7 +41,7 @@ public class TelegramWebhookService {
         processCommand(telegramUser.getChatId(), text, from.id());
     }
 
-    private void processCommand(Long chatId, String text, Long userId) throws BadRequestException {
+    private void processCommand(Long chatId, String text, Long userId) {
         if (text == null || text.isBlank()) return;
 
         TelegramUser telegramUser = userService.findByUserId(userId);

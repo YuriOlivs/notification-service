@@ -27,7 +27,7 @@ public class MailService {
     private final TemplateService templateService;
     private final MailFromProperties from;
 
-    public String sendEmail(MailDTO dto) throws MessagingException, UnsupportedEncodingException {
+    public void sendEmail(MailDTO dto) throws MessagingException, UnsupportedEncodingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
@@ -41,10 +41,9 @@ public class MailService {
         helper.setText(dto.body(), true);
 
         mailSender.send(message);
-        return "Mensagem enviada com sucesso";
     }
 
-    public String sendOrderTrackingMail(OrderTrackingMailDTO dto) throws IOException, MessagingException {
+    public void sendOrderTrackingMail(OrderTrackingMailDTO dto) throws IOException, MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
@@ -68,7 +67,6 @@ public class MailService {
         helper.setText(renderedHtml, true);
 
         mailSender.send(message);
-        return "Message sent successfully";
     }
 
     private String convertProductsToHtml(List<ProductEmailDTO> products) throws IOException {

@@ -1,11 +1,11 @@
 package com.yuriolivs.notification_service.telegram.services;
 
+import com.yuriolivs.notification_service.exceptions.http.HttpBadRequestException;
 import com.yuriolivs.notification_service.telegram.dto.TelegramMessageDTO;
 import com.yuriolivs.notification_service.config.TelegramProperties;
 import com.yuriolivs.notification_service.telegram.TelegramUser;
 import com.yuriolivs.notification_service.telegram.enums.TelegramMessages;
 import lombok.AllArgsConstructor;
-import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,9 +18,9 @@ public class TelegramMessageService {
     private final RestTemplate restTemplate;
     private final TelegramProperties config;
 
-    public String sendMessage(TelegramMessageDTO dto) throws BadRequestException {
+    public void sendMessage(TelegramMessageDTO dto)  {
         TelegramUser telegramUser = userService.findByUserId(dto.userId());
-        if (!telegramUser.isActive()) throw new BadRequestException("User does not have notifications activated.");
+        if (!telegramUser.isActive()) throw new HttpBadRequestException("User does not have notifications activated.");
 
         String url = String.format(
                 "%s/bot%s/sendMessage",
@@ -34,8 +34,6 @@ public class TelegramMessageService {
         );
 
         restTemplate.postForEntity(url, body, Void.class);
-
-        return "Message sent successfully";
     }
 
     public void sendStardardizedMessages(Long chatId, TelegramMessages message) {

@@ -1,10 +1,10 @@
 package com.yuriolivs.notification_service.telegram.services;
 
+import com.yuriolivs.notification_service.exceptions.http.HttpNotFoundException;
 import com.yuriolivs.notification_service.telegram.TelegramUser;
 import com.yuriolivs.notification_service.telegram.TelegramUserRepository;
 import com.yuriolivs.notification_service.telegram.dto.TelegramDeleteWebhookDTO;
 import lombok.AllArgsConstructor;
-import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,11 +12,11 @@ import org.springframework.stereotype.Service;
 public class TelegramUserService {
     private final TelegramUserRepository repo;
 
-    public TelegramUser findByUserId(Long userId) throws BadRequestException {
+    public TelegramUser findByUserId(Long userId) {
         TelegramUser telegramUser = repo.findByTelegramUserId(userId);
 
         if(telegramUser == null) {
-            throw new BadRequestException("User was not found.");
+            throw new HttpNotFoundException("User was not found.");
         }
 
         return telegramUser;
@@ -36,19 +36,18 @@ public class TelegramUserService {
         return exists;
     }
 
-    public TelegramUser updateFirstMessage(Long userId) throws BadRequestException {
+    public void updateFirstMessage(Long userId) {
         TelegramUser telegramUser = findByUserId(userId);
         telegramUser.setFirstMessage(false);
-        return repo.save(telegramUser);
+        repo.save(telegramUser);
     }
 
-    public void toggleNotifications(Long userId) throws BadRequestException {
+    public void toggleNotifications(Long userId) {
         TelegramUser telegramUser = findByUserId(userId);
         telegramUser.setActive(!telegramUser.isActive());
-        telegramUser.isActive();
     }
 
-    public void deleteTelegramUser(TelegramDeleteWebhookDTO dto) throws BadRequestException {
+    public void deleteTelegramUser(TelegramDeleteWebhookDTO dto) {
         findByUserId(dto.id());
         repo.deleteByTelegramUserId(dto.id());
     }
