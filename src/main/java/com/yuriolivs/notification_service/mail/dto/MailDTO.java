@@ -3,6 +3,7 @@ package com.yuriolivs.notification_service.mail.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.ToString;
 
 public record MailDTO(
     @NotBlank(message = "Recipient (to) is obligatory.")

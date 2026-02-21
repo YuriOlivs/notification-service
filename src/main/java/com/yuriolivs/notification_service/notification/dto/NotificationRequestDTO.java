@@ -5,7 +5,9 @@ import com.yuriolivs.notification_service.notification.enums.NotificationChannel
 import com.yuriolivs.notification_service.notification.enums.NotificationType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ObjectNode;
+
+import java.util.Map;
 
 public record NotificationRequestDTO(
     @NotBlank
@@ -21,6 +23,6 @@ public record NotificationRequestDTO(
     EmailTemplate template,
 
     @NotNull
-    JsonNode payload
+    Map<String, String> payload
 ) {
 }
