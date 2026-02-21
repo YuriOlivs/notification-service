@@ -28,6 +28,13 @@ public class MailService {
     private final MailFromProperties from;
 
     public void sendEmail(MailDTO dto) throws MessagingException, UnsupportedEncodingException {
+        System.out.println("---------------------------------------");
+        System.out.println("---------------------------------------");
+        System.out.println("---------------------------------------");
+        System.out.println("---------------------------------------");
+        System.out.println("---------------------------------------");
+        System.out.println(dto);
+
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
