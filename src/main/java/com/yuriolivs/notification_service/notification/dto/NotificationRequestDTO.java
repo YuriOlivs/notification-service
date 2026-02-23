@@ -2,6 +2,7 @@ package com.yuriolivs.notification_service.notification.dto;
 
 import com.yuriolivs.notification_service.mail.enums.EmailTemplate;
 import com.yuriolivs.notification_service.notification.enums.NotificationChannel;
+import com.yuriolivs.notification_service.notification.enums.NotificationPriority;
 import com.yuriolivs.notification_service.notification.enums.NotificationType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -21,6 +22,8 @@ public record NotificationRequestDTO(
     NotificationType type,
 
     EmailTemplate template,
+
+    NotificationPriority priority,
 
     @NotNull
     Map<String, String> payload

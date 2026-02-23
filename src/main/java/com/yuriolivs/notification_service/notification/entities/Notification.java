@@ -1,6 +1,7 @@
 package com.yuriolivs.notification_service.notification.entities;
 
 import com.yuriolivs.notification_service.notification.enums.NotificationChannel;
+import com.yuriolivs.notification_service.notification.enums.NotificationPriority;
 import com.yuriolivs.notification_service.notification.enums.NotificationStatus;
 import com.yuriolivs.notification_service.notification.enums.NotificationType;
 import jakarta.persistence.*;
@@ -44,6 +45,8 @@ public class Notification {
     @Enumerated(EnumType.STRING)
     private NotificationStatus status;
 
+    private NotificationPriority priority;
+
     private LocalDateTime createdAt;
 
     private String payload;
@@ -55,6 +58,7 @@ public class Notification {
         String template,
         NotificationType type,
         NotificationStatus status,
+        NotificationPriority priority,
         LocalDateTime createdAt,
         String payload
     ) {
@@ -64,6 +68,7 @@ public class Notification {
         this.template = template;
         this.type = type;
         this.status = status;
+        this.priority = priority;
         this.createdAt = createdAt;
         this.payload = payload;
     }

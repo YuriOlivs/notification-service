@@ -34,6 +34,7 @@ public class NotificationService {
                 dto.template().name() ,
                 dto.type(),
                 NotificationStatus.CREATED,
+                dto.priority(),
                 LocalDateTime.now(),
                 dto.payload().toString()
         );
