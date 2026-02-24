@@ -4,7 +4,7 @@ import com.yuriolivs.notification_service.mail.domain.dto.MailDTO;
 import com.yuriolivs.notification_service.config.MailFromProperties;
 import com.yuriolivs.notification_service.mail.domain.dto.OrderTrackingMailDTO;
 import com.yuriolivs.notification_service.mail.domain.dto.ProductEmailDTO;
-import com.yuriolivs.notification_service.mail.domain.enums.EmailTemplate;
+import com.yuriolivs.notification.shared.domain.email.enums.EmailTemplate;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
@@ -28,13 +28,6 @@ public class MailService {
     private final MailFromProperties from;
 
     public void sendEmail(MailDTO dto) throws MessagingException, UnsupportedEncodingException {
-        System.out.println("---------------------------------------");
-        System.out.println("---------------------------------------");
-        System.out.println("---------------------------------------");
-        System.out.println("---------------------------------------");
-        System.out.println("---------------------------------------");
-        System.out.println(dto);
-
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
