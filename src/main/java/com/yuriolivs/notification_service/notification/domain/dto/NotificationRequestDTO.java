@@ -1,9 +1,9 @@
 package com.yuriolivs.notification_service.notification.domain.dto;
 
-import com.yuriolivs.notification_service.mail.domain.enums.EmailTemplate;
-import com.yuriolivs.notification_service.notification.domain.enums.NotificationChannel;
-import com.yuriolivs.notification_service.notification.domain.enums.NotificationPriority;
-import com.yuriolivs.notification_service.notification.domain.enums.NotificationType;
+import com.yuriolivs.notification.shared.domain.email.enums.EmailTemplate;
+import com.yuriolivs.notification.shared.domain.notification.enums.NotificationChannel;
+import com.yuriolivs.notification.shared.domain.notification.enums.NotificationPriority;
+import com.yuriolivs.notification.shared.domain.notification.enums.NotificationType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

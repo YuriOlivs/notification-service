@@ -1,4 +1,4 @@
-package com.yuriolivs.notification_service.telegram.domain.services;
+package com.yuriolivs.notification_service.telegram.services;
 
 import com.yuriolivs.notification_service.exceptions.http.HttpBadRequestException;
 import com.yuriolivs.notification_service.telegram.domain.dto.TelegramMessageDTO;

@@ -1,6 +1,6 @@
 package com.yuriolivs.notification_service.mail;
 
-import com.yuriolivs.notification_service.mail.domain.enums.EmailTemplate;
+import com.yuriolivs.notification.shared.domain.email.enums.EmailTemplate;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 

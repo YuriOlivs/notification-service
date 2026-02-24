@@ -1,9 +1,9 @@
 package com.yuriolivs.notification_service.notification.domain.entities;
 
-import com.yuriolivs.notification_service.notification.domain.enums.NotificationChannel;
-import com.yuriolivs.notification_service.notification.domain.enums.NotificationPriority;
-import com.yuriolivs.notification_service.notification.domain.enums.NotificationStatus;
-import com.yuriolivs.notification_service.notification.domain.enums.NotificationType;
+import com.yuriolivs.notification.shared.domain.notification.enums.NotificationChannel;
+import com.yuriolivs.notification.shared.domain.notification.enums.NotificationPriority;
+import com.yuriolivs.notification.shared.domain.notification.enums.NotificationStatus;
+import com.yuriolivs.notification.shared.domain.notification.enums.NotificationType;
 import jakarta.persistence.*;
 import lombok.*;
 
