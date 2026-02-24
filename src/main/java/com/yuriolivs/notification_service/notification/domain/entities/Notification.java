@@ -1,15 +1,11 @@
-package com.yuriolivs.notification_service.notification.entities;
+package com.yuriolivs.notification_service.notification.domain.entities;
 
-import com.yuriolivs.notification_service.notification.enums.NotificationChannel;
-import com.yuriolivs.notification_service.notification.enums.NotificationPriority;
-import com.yuriolivs.notification_service.notification.enums.NotificationStatus;
-import com.yuriolivs.notification_service.notification.enums.NotificationType;
+import com.yuriolivs.notification_service.notification.domain.enums.NotificationChannel;
+import com.yuriolivs.notification_service.notification.domain.enums.NotificationPriority;
+import com.yuriolivs.notification_service.notification.domain.enums.NotificationStatus;
+import com.yuriolivs.notification_service.notification.domain.enums.NotificationType;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
-import tools.jackson.databind.JsonNode;
-import tools.jackson.databind.node.ObjectNode;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

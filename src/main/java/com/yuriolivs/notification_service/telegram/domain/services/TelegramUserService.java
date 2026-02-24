@@ -1,9 +1,9 @@
-package com.yuriolivs.notification_service.telegram.services;
+package com.yuriolivs.notification_service.telegram.domain.services;
 
 import com.yuriolivs.notification_service.exceptions.http.HttpNotFoundException;
 import com.yuriolivs.notification_service.telegram.TelegramUser;
 import com.yuriolivs.notification_service.telegram.TelegramUserRepository;
-import com.yuriolivs.notification_service.telegram.dto.TelegramDeleteWebhookDTO;
+import com.yuriolivs.notification_service.telegram.domain.dto.TelegramDeleteWebhookDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

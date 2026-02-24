@@ -1,6 +1,4 @@
-package com.yuriolivs.notification_service.mail.dto;
-
-import jakarta.validation.constraints.NotBlank;
+package com.yuriolivs.notification_service.mail.domain.dto;
 
 import java.util.List;
 

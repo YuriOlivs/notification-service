@@ -1,4 +1,4 @@
-package com.yuriolivs.notification_service.notification.enums;
+package com.yuriolivs.notification_service.notification.domain.enums;
 
 import lombok.AllArgsConstructor;
 

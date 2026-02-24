@@ -1,9 +1,9 @@
 package com.yuriolivs.notification_service.notification;
 
 import com.yuriolivs.notification_service.exceptions.http.HttpNotFoundException;
-import com.yuriolivs.notification_service.notification.dto.NotificationRequestDTO;
-import com.yuriolivs.notification_service.notification.entities.Notification;
-import com.yuriolivs.notification_service.notification.enums.NotificationStatus;
+import com.yuriolivs.notification_service.notification.domain.dto.NotificationRequestDTO;
+import com.yuriolivs.notification_service.notification.domain.entities.Notification;
+import com.yuriolivs.notification_service.notification.domain.enums.NotificationStatus;
 import com.yuriolivs.notification_service.notification.messaging.producer.NotificationPublisher;
 import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;

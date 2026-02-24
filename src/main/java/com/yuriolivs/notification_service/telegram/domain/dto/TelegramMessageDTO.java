@@ -1,4 +1,4 @@
-package com.yuriolivs.notification_service.telegram.dto;
+package com.yuriolivs.notification_service.telegram.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.Max;

@@ -1,13 +1,12 @@
-package com.yuriolivs.notification_service.telegram.services;
+package com.yuriolivs.notification_service.telegram.domain.services;
 
-import com.yuriolivs.notification_service.telegram.dto.TelegramWebhookDTO;
-import com.yuriolivs.notification_service.telegram.dto.message.MessageChatDTO;
-import com.yuriolivs.notification_service.telegram.dto.message.MessageFromDTO;
+import com.yuriolivs.notification_service.telegram.domain.dto.TelegramWebhookDTO;
+import com.yuriolivs.notification_service.telegram.domain.dto.message.MessageChatDTO;
+import com.yuriolivs.notification_service.telegram.domain.dto.message.MessageFromDTO;
 import com.yuriolivs.notification_service.telegram.TelegramUser;
-import com.yuriolivs.notification_service.telegram.enums.TelegramCommands;
-import com.yuriolivs.notification_service.telegram.enums.TelegramMessages;
+import com.yuriolivs.notification_service.telegram.domain.enums.TelegramCommands;
+import com.yuriolivs.notification_service.telegram.domain.enums.TelegramMessages;
 import lombok.AllArgsConstructor;
-import org.apache.coyote.BadRequestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.yuriolivs.notification_service.mail.dto;
+package com.yuriolivs.notification_service.mail.domain.dto;
 
 public record OrderTrackingDataEmailDTO(
         String customerName,

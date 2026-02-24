@@ -1,6 +1,6 @@
 package com.yuriolivs.notification_service.notification;
 
-import com.yuriolivs.notification_service.notification.entities.Notification;
+import com.yuriolivs.notification_service.notification.domain.entities.Notification;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

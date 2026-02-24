@@ -1,10 +1,10 @@
-package com.yuriolivs.notification_service.telegram.services;
+package com.yuriolivs.notification_service.telegram.domain.services;
 
 import com.yuriolivs.notification_service.exceptions.http.HttpBadRequestException;
-import com.yuriolivs.notification_service.telegram.dto.TelegramMessageDTO;
+import com.yuriolivs.notification_service.telegram.domain.dto.TelegramMessageDTO;
 import com.yuriolivs.notification_service.config.TelegramProperties;
 import com.yuriolivs.notification_service.telegram.TelegramUser;
-import com.yuriolivs.notification_service.telegram.enums.TelegramMessages;
+import com.yuriolivs.notification_service.telegram.domain.enums.TelegramMessages;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

@@ -1,12 +1,11 @@
-package com.yuriolivs.notification_service.notification.dto;
+package com.yuriolivs.notification_service.notification.domain.dto;
 
-import com.yuriolivs.notification_service.mail.enums.EmailTemplate;
-import com.yuriolivs.notification_service.notification.enums.NotificationChannel;
-import com.yuriolivs.notification_service.notification.enums.NotificationPriority;
-import com.yuriolivs.notification_service.notification.enums.NotificationType;
+import com.yuriolivs.notification_service.mail.domain.enums.EmailTemplate;
+import com.yuriolivs.notification_service.notification.domain.enums.NotificationChannel;
+import com.yuriolivs.notification_service.notification.domain.enums.NotificationPriority;
+import com.yuriolivs.notification_service.notification.domain.enums.NotificationType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import tools.jackson.databind.node.ObjectNode;
 
 import java.util.Map;
 

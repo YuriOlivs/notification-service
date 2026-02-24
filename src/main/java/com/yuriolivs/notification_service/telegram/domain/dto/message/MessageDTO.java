@@ -1,4 +1,4 @@
-package com.yuriolivs.notification_service.telegram.dto.message;
+package com.yuriolivs.notification_service.telegram.domain.dto.message;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

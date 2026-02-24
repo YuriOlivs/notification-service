@@ -1,4 +1,4 @@
-package com.yuriolivs.notification_service.telegram.enums;
+package com.yuriolivs.notification_service.telegram.domain.enums;
 
 import lombok.AllArgsConstructor;
 

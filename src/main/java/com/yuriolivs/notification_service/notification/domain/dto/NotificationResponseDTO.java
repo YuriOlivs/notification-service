@@ -1,8 +1,8 @@
-package com.yuriolivs.notification_service.notification.dto;
+package com.yuriolivs.notification_service.notification.domain.dto;
 
-import com.yuriolivs.notification_service.notification.entities.Notification;
-import com.yuriolivs.notification_service.notification.enums.NotificationChannel;
-import com.yuriolivs.notification_service.notification.enums.NotificationStatus;
+import com.yuriolivs.notification_service.notification.domain.entities.Notification;
+import com.yuriolivs.notification_service.notification.domain.enums.NotificationChannel;
+import com.yuriolivs.notification_service.notification.domain.enums.NotificationStatus;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
