@@ -1,6 +1,6 @@
 package com.yuriolivs.notification_service.telegram.services;
 
-import com.yuriolivs.notification_service.exceptions.http.HttpNotFoundException;
+import com.yuriolivs.notification.shared.exceptions.http.HttpNotFoundException;
 import com.yuriolivs.notification_service.telegram.TelegramUser;
 import com.yuriolivs.notification_service.telegram.TelegramUserRepository;
 import com.yuriolivs.notification_service.telegram.domain.dto.TelegramDeleteWebhookDTO;

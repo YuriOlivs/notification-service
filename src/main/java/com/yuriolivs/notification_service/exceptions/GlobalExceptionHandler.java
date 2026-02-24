@@ -1,6 +1,7 @@
 package com.yuriolivs.notification_service.exceptions;
 
-import com.yuriolivs.notification_service.exceptions.http.HttpException;
+import com.yuriolivs.notification.shared.exceptions.ErrorResponse;
+import com.yuriolivs.notification.shared.exceptions.http.HttpException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,7 +18,7 @@ public class GlobalExceptionHandler {
             HttpServletRequest request
     ) {
         ErrorResponse err = new ErrorResponse(
-                ex.getStatus(),
+                ex.getStatus().getCode(),
                 ex.getMessage(),
                 request.getRequestURI(),
                 LocalDateTime.now()
