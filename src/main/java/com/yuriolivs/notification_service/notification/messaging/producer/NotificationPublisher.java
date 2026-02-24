@@ -1,6 +1,7 @@
 package com.yuriolivs.notification_service.notification.messaging.producer;
 
-import com.yuriolivs.notification_service.notification.entities.Notification;
+import com.yuriolivs.notification_service.config.RabbitMqConfig;
+import com.yuriolivs.notification_service.notification.domain.entities.Notification;
 import com.yuriolivs.notification_service.notification.messaging.NotificationSend;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,17 +12,22 @@ import java.util.Map;
 @Component
 public class NotificationPublisher {
     @Autowired private RabbitTemplate rabbitTemplate;
-    private final String exchange = "notification.exchange";
 
     public void publish(Notification notification, Map<String, String> payload) {
         String routingKey = notification.getChannel().name().toLowerCase();
 
-        NotificationSend send = new NotificationSend(notification.getId(), payload);
+        NotificationSend send = new NotificationSend(notification.getId(), notification.getPriority(), payload);
 
         rabbitTemplate.convertAndSend(
-                exchange,
+                RabbitMqConfig.EXCHANGE,
                 routingKey,
-                send
+                send,
+                msg -> {
+                    msg.getMessageProperties()
+                            .setPriority(notification.getPriority().value());
+
+                    return msg;
+                }
         );
     }
 }

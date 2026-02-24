@@ -1,11 +1,9 @@
 package com.yuriolivs.notification_service.telegram;
 
-import com.yuriolivs.notification_service.telegram.dto.TelegramDeleteWebhookDTO;
-import com.yuriolivs.notification_service.telegram.dto.TelegramMessageDTO;
-import com.yuriolivs.notification_service.telegram.dto.TelegramWebhookDTO;
-import com.yuriolivs.notification_service.telegram.services.TelegramMessageService;
-import com.yuriolivs.notification_service.telegram.services.TelegramUserService;
-import com.yuriolivs.notification_service.telegram.services.TelegramWebhookService;
+import com.yuriolivs.notification_service.telegram.domain.dto.TelegramDeleteWebhookDTO;
+import com.yuriolivs.notification_service.telegram.domain.dto.TelegramWebhookDTO;
+import com.yuriolivs.notification_service.telegram.domain.services.TelegramUserService;
+import com.yuriolivs.notification_service.telegram.domain.services.TelegramWebhookService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.apache.coyote.BadRequestException;

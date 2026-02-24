@@ -1,8 +1,7 @@
 package com.yuriolivs.notification_service.notification;
 
-import com.yuriolivs.notification_service.notification.dto.NotificationRequestDTO;
-import com.yuriolivs.notification_service.notification.dto.NotificationResponseDTO;
-import com.yuriolivs.notification_service.notification.entities.Notification;
+import com.yuriolivs.notification_service.notification.domain.dto.NotificationRequestDTO;
+import com.yuriolivs.notification_service.notification.domain.dto.NotificationResponseDTO;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

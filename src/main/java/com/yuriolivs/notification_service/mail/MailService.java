@@ -1,10 +1,10 @@
 package com.yuriolivs.notification_service.mail;
 
-import com.yuriolivs.notification_service.mail.dto.MailDTO;
+import com.yuriolivs.notification_service.mail.domain.dto.MailDTO;
 import com.yuriolivs.notification_service.config.MailFromProperties;
-import com.yuriolivs.notification_service.mail.dto.OrderTrackingMailDTO;
-import com.yuriolivs.notification_service.mail.dto.ProductEmailDTO;
-import com.yuriolivs.notification_service.mail.enums.EmailTemplate;
+import com.yuriolivs.notification_service.mail.domain.dto.OrderTrackingMailDTO;
+import com.yuriolivs.notification_service.mail.domain.dto.ProductEmailDTO;
+import com.yuriolivs.notification_service.mail.domain.enums.EmailTemplate;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
