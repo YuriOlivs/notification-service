@@ -1,6 +1,7 @@
 package com.yuriolivs.notification_service.notification;
 
 import com.yuriolivs.notification.shared.exceptions.http.HttpNotFoundException;
+import com.yuriolivs.notification_service.notification.domain.NotificationServiceInterface;
 import com.yuriolivs.notification_service.notification.domain.dto.NotificationRequestDTO;
 import com.yuriolivs.notification_service.notification.domain.entities.Notification;
 import com.yuriolivs.notification.shared.domain.notification.enums.NotificationStatus;
@@ -16,10 +17,11 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class NotificationService {
+public class NotificationService implements NotificationServiceInterface {
     private NotificationRepository repo;
     private NotificationPublisher publisher;
 
+    @Override
     public Notification handleNotificationRequest(NotificationRequestDTO dto) throws IOException, MessagingException {
         Optional<Notification> existing = repo.findByIdempotencyKey(dto.idempotencyKey());
         if (existing.isPresent()) {
@@ -45,6 +47,7 @@ public class NotificationService {
         return notification;
     }
 
+    @Override
     public Notification findById(UUID id) {
         Optional<Notification> existing = repo.findById(id);
         if (existing.isEmpty()) {
