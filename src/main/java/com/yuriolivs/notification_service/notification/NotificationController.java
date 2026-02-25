@@ -7,10 +7,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -29,7 +26,8 @@ public class NotificationController {
         return ResponseEntity.ok(response);
     }
 
-    private ResponseEntity<NotificationResponseDTO> findById(
+    @GetMapping
+    private ResponseEntity<NotificationResponseDTO> getNotification(
             @RequestBody @NotBlank UUID id
     ) {
         NotificationResponseDTO response = NotificationResponseDTO.from(service.findById(id));

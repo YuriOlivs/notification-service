@@ -8,7 +8,7 @@ import com.yuriolivs.notification_service.notification.NotificationRepository;
 import com.yuriolivs.notification_service.notification.domain.entities.Notification;
 import com.yuriolivs.notification.shared.domain.notification.enums.NotificationStatus;
 import com.yuriolivs.notification.shared.domain.notification.enums.NotificationType;
-import com.yuriolivs.notification_service.notification.messaging.NotificationSend;
+import com.yuriolivs.notification.shared.domain.notification.NotificationSend;
 import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
