@@ -5,6 +5,7 @@ import com.yuriolivs.notification_service.notification.domain.dto.NotificationRe
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,11 +35,20 @@ public class NotificationController {
         return ResponseEntity.ok(response);
     }
 
+    //Internal Endpoints
     @PostMapping("/internal")
     private ResponseEntity<NotificationResponseDTO> postNotification(
             @RequestBody @Valid NotificationRequestDTO dto
     ) {
         NotificationResponseDTO response = NotificationResponseDTO.from(service.save(dto));
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/internal/payload")
+    private ResponseEntity<String> getPayload(
+            @RequestBody @NotEmpty UUID id
+    ) {
+        String payload = service.getNotificationPayload(id);
+        return ResponseEntity.ok(payload);
     }
 }
