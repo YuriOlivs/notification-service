@@ -33,4 +33,12 @@ public class NotificationController {
         NotificationResponseDTO response = NotificationResponseDTO.from(service.findById(id));
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping("/internal")
+    private ResponseEntity<NotificationResponseDTO> postNotification(
+            @RequestBody @Valid NotificationRequestDTO dto
+    ) {
+        NotificationResponseDTO response = NotificationResponseDTO.from(service.save(dto));
+        return ResponseEntity.ok(response);
+    }
 }

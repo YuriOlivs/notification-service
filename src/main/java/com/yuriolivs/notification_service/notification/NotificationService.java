@@ -28,18 +28,7 @@ public class NotificationService implements NotificationServiceInterface {
             return existing.get();
         }
 
-
-        Notification notification = new Notification(
-                dto.idempotencyKey(),
-                dto.channel(),
-                dto.recipient(),
-                dto.template().name() ,
-                dto.type(),
-                NotificationStatus.CREATED,
-                dto.priority(),
-                LocalDateTime.now(),
-                dto.payload().toString()
-        );
+        Notification notification = Notification.fromRequest(dto);
 
         repo.save(notification);
         publisher.publish(notification, dto.payload());
@@ -55,5 +44,11 @@ public class NotificationService implements NotificationServiceInterface {
         }
 
         return existing.get();
+    }
+
+    @Override
+    public Notification save(NotificationRequestDTO dto) {
+        Notification notification = Notification.fromRequest(dto);
+        return repo.save(notification);
     }
 }

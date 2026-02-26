@@ -9,4 +9,5 @@ import java.util.UUID;
 public interface NotificationServiceInterface {
     Notification handleNotificationRequest(NotificationRequestDTO dto) throws Exception;
     Notification findById(UUID id);
+    Notification save(NotificationRequestDTO dto);
 }
