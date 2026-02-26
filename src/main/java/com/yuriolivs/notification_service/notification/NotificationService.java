@@ -1,5 +1,8 @@
 package com.yuriolivs.notification_service.notification;
 
+import com.yuriolivs.notification.shared.domain.schedule.dto.SchedulePayloadDTO;
+import com.yuriolivs.notification.shared.domain.schedule.dto.SchedulePayloadRequestDTO;
+import com.yuriolivs.notification.shared.domain.schedule.dto.ScheduledPayloadResponseDTO;
 import com.yuriolivs.notification.shared.exceptions.http.HttpNotFoundException;
 import com.yuriolivs.notification_service.notification.domain.NotificationServiceInterface;
 import com.yuriolivs.notification_service.notification.domain.dto.NotificationRequestDTO;
@@ -11,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -51,8 +56,22 @@ public class NotificationService implements NotificationServiceInterface {
         return repo.save(notification);
     }
 
-    public String getNotificationPayload(UUID id) {
-        Notification notification = this.findById(id);
-        return notification.getPayload();
+    public ScheduledPayloadResponseDTO getNotificationsPayload(
+            SchedulePayloadRequestDTO dto
+    ) {
+        List<SchedulePayloadDTO> payloads = new ArrayList<>();
+
+        List<Notification> notifications = repo.findAllById(dto.ids());
+
+        for (Notification notification : notifications) {
+            SchedulePayloadDTO payload = new SchedulePayloadDTO(
+                    notification.getId(),
+                    notification.getPayload()
+            );
+
+            payloads.add(payload);
+        }
+
+        return new ScheduledPayloadResponseDTO(payloads);
     }
 }

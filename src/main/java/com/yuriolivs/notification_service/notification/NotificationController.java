@@ -1,5 +1,7 @@
 package com.yuriolivs.notification_service.notification;
 
+import com.yuriolivs.notification.shared.domain.schedule.dto.SchedulePayloadRequestDTO;
+import com.yuriolivs.notification.shared.domain.schedule.dto.ScheduledPayloadResponseDTO;
 import com.yuriolivs.notification_service.notification.domain.dto.NotificationRequestDTO;
 import com.yuriolivs.notification_service.notification.domain.dto.NotificationResponseDTO;
 import jakarta.mail.MessagingException;
@@ -35,7 +37,7 @@ public class NotificationController {
         return ResponseEntity.ok(response);
     }
 
-    //Internal Endpoints
+    // <---- Internal Endpoints ---->
     @PostMapping("/internal")
     private ResponseEntity<NotificationResponseDTO> postNotification(
             @RequestBody @Valid NotificationRequestDTO dto
@@ -44,11 +46,11 @@ public class NotificationController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/internal/payload/{id}")
-    private ResponseEntity<String> getPayload(
-            @PathVariable @NotEmpty UUID id
-    ) {
-        String payload = service.getNotificationPayload(id);
+    @GetMapping("/internal/payload")
+    private ResponseEntity<ScheduledPayloadResponseDTO> getNotificationsPayload(
+            @RequestBody @Valid SchedulePayloadRequestDTO dto
+            ) {
+        ScheduledPayloadResponseDTO payload = service.getNotificationsPayload(dto);
         return ResponseEntity.ok(payload);
     }
 }
