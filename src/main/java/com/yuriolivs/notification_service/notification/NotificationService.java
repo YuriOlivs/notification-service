@@ -66,7 +66,8 @@ public class NotificationService implements NotificationServiceInterface {
         for (Notification notification : notifications) {
             SchedulePayloadDTO payload = new SchedulePayloadDTO(
                     notification.getId(),
-                    notification.getPayload()
+                    notification.getPayload(),
+                    notification.getChannel()
             );
 
             payloads.add(payload);

@@ -1,5 +1,6 @@
 package com.yuriolivs.notification_service.notification.messaging.consumer;
 
+import com.yuriolivs.notification.shared.domain.notification.NotificationMessage;
 import com.yuriolivs.notification_service.config.RabbitMqConfig;
 import com.yuriolivs.notification_service.notification.NotificationRepository;
 import com.yuriolivs.notification_service.notification.domain.entities.Notification;
@@ -12,9 +13,6 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.ObjectMapper;
 
-import java.util.Map;
-import java.util.UUID;
-
 @Component
 @AllArgsConstructor
 public class TelegramNotificationConsumer {
@@ -23,8 +21,8 @@ public class TelegramNotificationConsumer {
     private final ObjectMapper objectMapper;
 
     @RabbitListener(queues = RabbitMqConfig.TELEGRAM_QUEUE)
-    public void consume(UUID notificationId, Map<String, String> payload) {
-        Notification notification = repo.findById(notificationId).orElseThrow();
+    public void consume(NotificationMessage received) {
+        Notification notification = repo.findById(received.getId()).orElseThrow();
 
         try {
             NotificationType type = notification.getType();
@@ -32,7 +30,7 @@ public class TelegramNotificationConsumer {
             switch (type) {
                 case TELEGRAM_MESSAGE -> {
                     TelegramMessageDTO dto = objectMapper.convertValue(
-                            payload,
+                            received.getPayload(),
                             TelegramMessageDTO.class
                     );
                     messageService.sendMessage(dto);

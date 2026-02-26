@@ -8,7 +8,7 @@ import com.yuriolivs.notification_service.notification.NotificationRepository;
 import com.yuriolivs.notification_service.notification.domain.entities.Notification;
 import com.yuriolivs.notification.shared.domain.notification.enums.NotificationStatus;
 import com.yuriolivs.notification.shared.domain.notification.enums.NotificationType;
-import com.yuriolivs.notification.shared.domain.notification.NotificationSend;
+import com.yuriolivs.notification.shared.domain.notification.NotificationMessage;
 import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -25,7 +25,7 @@ public class MailNotificationConsumer {
     private final ObjectMapper objectMapper;
 
     @RabbitListener(queues = RabbitMqConfig.MAIL_QUEUE)
-    public void consume(NotificationSend received) throws MessagingException, IOException {
+    public void consume(NotificationMessage received) throws MessagingException, IOException {
         Notification notification = repo.findById(received.getId()).orElseThrow();
 
         try {
