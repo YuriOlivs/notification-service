@@ -27,9 +27,9 @@ public class NotificationController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     private ResponseEntity<NotificationResponseDTO> getNotification(
-            @RequestBody @NotBlank UUID id
+            @PathVariable @NotBlank UUID id
     ) {
         NotificationResponseDTO response = NotificationResponseDTO.from(service.findById(id));
         return ResponseEntity.ok(response);
@@ -44,9 +44,9 @@ public class NotificationController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/internal/payload")
+    @GetMapping("/internal/payload/{id}")
     private ResponseEntity<String> getPayload(
-            @RequestBody @NotEmpty UUID id
+            @PathVariable @NotEmpty UUID id
     ) {
         String payload = service.getNotificationPayload(id);
         return ResponseEntity.ok(payload);
