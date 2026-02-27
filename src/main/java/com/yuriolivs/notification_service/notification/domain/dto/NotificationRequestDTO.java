@@ -13,15 +13,18 @@ public record NotificationRequestDTO(
     @NotBlank
     String idempotencyKey,
 
+    @NotNull
     NotificationChannel channel,
 
     @NotBlank
     String recipient,
 
+    @NotNull
     NotificationType type,
 
     EmailTemplate template,
 
+    @NotNull
     NotificationPriority priority,
 
     @NotNull

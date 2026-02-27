@@ -6,8 +6,6 @@ import com.yuriolivs.notification_service.notification.domain.dto.NotificationRe
 import com.yuriolivs.notification_service.notification.domain.dto.NotificationResponseDTO;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +20,7 @@ public class NotificationController {
     private NotificationService service;
 
     @PostMapping
-    private ResponseEntity<NotificationResponseDTO> handleNotificationRequest(
+    public ResponseEntity<NotificationResponseDTO> handleNotificationRequest(
             @RequestBody @Valid NotificationRequestDTO dto
     ) throws MessagingException, IOException {
         NotificationResponseDTO response = NotificationResponseDTO.from(service.handleNotificationRequest(dto));
@@ -30,8 +28,8 @@ public class NotificationController {
     }
 
     @GetMapping("/{id}")
-    private ResponseEntity<NotificationResponseDTO> getNotification(
-            @PathVariable @NotBlank UUID id
+    public ResponseEntity<NotificationResponseDTO> getNotification(
+            @PathVariable UUID id
     ) {
         NotificationResponseDTO response = NotificationResponseDTO.from(service.findById(id));
         return ResponseEntity.ok(response);
@@ -39,7 +37,7 @@ public class NotificationController {
 
     // <---- Internal Endpoints ---->
     @PostMapping("/internal")
-    private ResponseEntity<NotificationResponseDTO> postNotification(
+    public ResponseEntity<NotificationResponseDTO> postNotification(
             @RequestBody @Valid NotificationRequestDTO dto
     ) {
         NotificationResponseDTO response = NotificationResponseDTO.from(service.save(dto));
@@ -47,7 +45,7 @@ public class NotificationController {
     }
 
     @GetMapping("/internal/payload")
-    private ResponseEntity<ScheduledPayloadResponseDTO> getNotificationsPayload(
+    public ResponseEntity<ScheduledPayloadResponseDTO> getNotificationsPayload(
             @RequestBody @Valid SchedulePayloadRequestDTO dto
             ) {
         ScheduledPayloadResponseDTO payload = service.getNotificationsPayload(dto);
