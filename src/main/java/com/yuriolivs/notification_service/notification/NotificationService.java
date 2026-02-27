@@ -3,6 +3,7 @@ package com.yuriolivs.notification_service.notification;
 import com.yuriolivs.notification.shared.domain.schedule.dto.SchedulePayloadDTO;
 import com.yuriolivs.notification.shared.domain.schedule.dto.SchedulePayloadRequestDTO;
 import com.yuriolivs.notification.shared.domain.schedule.dto.ScheduledPayloadResponseDTO;
+import com.yuriolivs.notification.shared.exceptions.http.HttpBadRequestException;
 import com.yuriolivs.notification.shared.exceptions.http.HttpNotFoundException;
 import com.yuriolivs.notification_service.notification.domain.NotificationServiceInterface;
 import com.yuriolivs.notification_service.notification.domain.dto.NotificationRequestDTO;
@@ -52,6 +53,9 @@ public class NotificationService implements NotificationServiceInterface {
 
     @Override
     public Notification save(NotificationRequestDTO dto) {
+        Optional<Notification> existing = repo.findByIdempotencyKey(dto.idempotencyKey());
+        if (existing.isPresent()) throw new HttpBadRequestException("Notification Request already exists.");
+
         Notification notification = Notification.fromRequest(dto);
         return repo.save(notification);
     }
