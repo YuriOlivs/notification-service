@@ -44,7 +44,7 @@ public class NotificationController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/internal/payload")
+    @PostMapping("/internal/payload")
     public ResponseEntity<ScheduledPayloadResponseDTO> getNotificationsPayload(
             @RequestBody @Valid SchedulePayloadRequestDTO dto
             ) {

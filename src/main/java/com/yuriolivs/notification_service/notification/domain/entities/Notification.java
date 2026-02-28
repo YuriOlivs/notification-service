@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.UUID;
 
 @Entity
@@ -71,7 +72,7 @@ public class Notification {
         this.payload = payload;
     }
 
-    public static Notification fromRequest(NotificationRequestDTO dto) {
+    public static Notification fromRequest(NotificationRequestDTO dto, String payload) {
         return new Notification(
                 dto.idempotencyKey(),
                 dto.channel(),
@@ -81,7 +82,7 @@ public class Notification {
                 NotificationStatus.CREATED,
                 dto.priority(),
                 LocalDateTime.now(),
-                dto.payload().toString()
+                payload
         );
     }
 }
