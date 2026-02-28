@@ -24,6 +24,8 @@ public class RabbitMqConfig {
             "email";
     public static final String TELEGRAM_ROUTING_KEY =
             "telegram";
+    public static final String RESULT_ROUTING_KEY =
+            "result";
 
     @Bean
     public MessageConverter messageConverter() {
