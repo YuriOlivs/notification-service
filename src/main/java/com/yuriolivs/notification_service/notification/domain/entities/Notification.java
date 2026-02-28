@@ -4,10 +4,12 @@ import com.yuriolivs.notification.shared.domain.notification.enums.NotificationC
 import com.yuriolivs.notification.shared.domain.notification.enums.NotificationPriority;
 import com.yuriolivs.notification.shared.domain.notification.enums.NotificationStatus;
 import com.yuriolivs.notification.shared.domain.notification.enums.NotificationType;
+import com.yuriolivs.notification_service.notification.domain.dto.NotificationRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.UUID;
 
 @Entity
@@ -23,6 +25,7 @@ import java.util.UUID;
         }
 )
 @NoArgsConstructor
+@ToString
 public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -67,5 +70,19 @@ public class Notification {
         this.priority = priority;
         this.createdAt = createdAt;
         this.payload = payload;
+    }
+
+    public static Notification fromRequest(NotificationRequestDTO dto, String payload) {
+        return new Notification(
+                dto.idempotencyKey(),
+                dto.channel(),
+                dto.recipient(),
+                dto.template().name(),
+                dto.type(),
+                NotificationStatus.CREATED,
+                dto.priority(),
+                LocalDateTime.now(),
+                payload
+        );
     }
 }
