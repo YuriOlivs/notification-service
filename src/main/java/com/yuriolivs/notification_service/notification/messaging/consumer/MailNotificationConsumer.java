@@ -14,12 +14,14 @@ import com.yuriolivs.notification_service.notification.messaging.producer.Notifi
 import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class MailNotificationConsumer {
@@ -32,6 +34,11 @@ public class MailNotificationConsumer {
     public void consume(NotificationMessage received) throws MessagingException, IOException {
         Notification notification = repo.findById(received.getId()).orElseThrow();
         NotificationResult result = NotificationResult.from(received);
+
+        log.info("==================================================");
+        log.info("⚙️ STARTED CONSUMER: {} | Message: {}",
+                RabbitMqConfig.MAIL_QUEUE, received.getId());
+        log.info("==================================================");
 
         try {
             NotificationType type = notification.getType();
@@ -68,5 +75,10 @@ public class MailNotificationConsumer {
 
         repo.save(notification);
         resultPublisher.publish(result);
+
+        log.info("==================================================");
+        log.info("⚙️ ENDED CONSUMER: {} | Message: {}",
+                RabbitMqConfig.MAIL_QUEUE, received.getId());
+        log.info("==================================================");
     }
 }

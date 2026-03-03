@@ -11,10 +11,12 @@ import com.yuriolivs.notification_service.notification.messaging.producer.Notifi
 import com.yuriolivs.notification_service.telegram.domain.dto.TelegramMessageDTO;
 import com.yuriolivs.notification_service.telegram.services.TelegramMessageService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.ObjectMapper;
 
+@Slf4j
 @Component
 @AllArgsConstructor
 public class TelegramNotificationConsumer {
@@ -27,6 +29,11 @@ public class TelegramNotificationConsumer {
     public void consume(NotificationMessage received) {
         Notification notification = repo.findById(received.getId()).orElseThrow();
         NotificationResult result = NotificationResult.from(received);
+
+        log.info("==================================================");
+        log.info("⚙️ STARTED CONSUMER: {} | Message: {}",
+                RabbitMqConfig.MAIL_QUEUE, received.getId());
+        log.info("==================================================");
 
         try {
             NotificationType type = notification.getType();
@@ -56,5 +63,10 @@ public class TelegramNotificationConsumer {
 
         repo.save(notification);
         resultPublisher.publish(result);
+
+        log.info("==================================================");
+        log.info("⚙️ ENDED CONSUMER: {} | Message: {}",
+                RabbitMqConfig.MAIL_QUEUE, received.getId());
+        log.info("==================================================");
     }
 }
