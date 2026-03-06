@@ -1,6 +1,7 @@
 package com.yuriolivs.notification_service.notification.messaging.consumer;
 
 import com.yuriolivs.notification.shared.domain.notification.NotificationResult;
+import com.yuriolivs.notification.shared.domain.schedule.enums.ScheduleStatus;
 import com.yuriolivs.notification_service.config.RabbitMqConfig;
 import com.yuriolivs.notification_service.mail.MailService;
 import com.yuriolivs.notification_service.mail.domain.dto.MailDTO;
@@ -62,12 +63,12 @@ public class MailNotificationConsumer {
 
             notification.setStatus(NotificationStatus.SENT);
 
-            result.setSuccess(true);
+            result.setStatus(ScheduleStatus.EXECUTED);
             result.setMessage("Message sent with success.");
         } catch (Exception ex) {
             notification.setStatus(NotificationStatus.FAILED);
 
-            result.setSuccess(false);
+            result.setStatus(ScheduleStatus.FAILED);
             result.setMessage("There was an error sending the message.");
 
             throw ex;
