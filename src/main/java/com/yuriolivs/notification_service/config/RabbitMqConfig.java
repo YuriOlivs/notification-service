@@ -20,6 +20,8 @@ public class RabbitMqConfig {
             "notification.email.queue";
     public static final String TELEGRAM_QUEUE =
             "notification.telegram.queue";
+    public static final String RESULT_QUEUE =
+            "notification.result.queue";
     public static final String MAIL_ROUTING_KEY =
             "email";
     public static final String TELEGRAM_ROUTING_KEY =
@@ -59,14 +61,13 @@ public class RabbitMqConfig {
     }
 
     @Bean
-    public Queue mailQueue() {
-        return new Queue(MAIL_QUEUE);
-    }
+    public Queue mailQueue() { return new Queue(MAIL_QUEUE); }
 
     @Bean
-    public Queue telegramQueue() {
-        return new Queue(TELEGRAM_QUEUE);
-    }
+    public Queue telegramQueue() { return new Queue(TELEGRAM_QUEUE); }
+
+    @Bean
+    public Queue resultQueue() { return new Queue(RESULT_QUEUE); }
 
     @Bean
     public Binding mailBinding() {
@@ -82,5 +83,13 @@ public class RabbitMqConfig {
                 .bind(telegramQueue())
                 .to(exchange())
                 .with(TELEGRAM_ROUTING_KEY);
+    }
+
+    @Bean
+    public Binding resultBinding() {
+        return BindingBuilder
+                .bind(resultQueue())
+                .to(exchange())
+                .with(RESULT_ROUTING_KEY);
     }
 }

@@ -17,9 +17,9 @@ public class NotificationResultPublisher {
 
     public void publish(NotificationResult result) {
         if (result.getScheduleId() == null) return;
-
         log.info("==================================================");
-        log.info("✉️ Publishing message to " + RabbitMqConfig.RESULT_ROUTING_KEY);
+        log.info("✉️ Publishing message to " + RabbitMqConfig.RESULT_QUEUE);
+        log.info("RESULT: {}", result.toString());
         log.info("==================================================");
 
         rabbitTemplate.convertAndSend(
