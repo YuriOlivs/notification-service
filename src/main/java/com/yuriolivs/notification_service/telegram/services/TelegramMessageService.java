@@ -2,7 +2,7 @@ package com.yuriolivs.notification_service.telegram.services;
 
 import com.yuriolivs.notification.shared.exceptions.http.HttpBadRequestException;
 import com.yuriolivs.notification_service.telegram.domain.dto.TelegramMessageDTO;
-import com.yuriolivs.notification_service.config.TelegramProperties;
+import com.yuriolivs.notification_service.config.properties.TelegramProperties;
 import com.yuriolivs.notification_service.telegram.TelegramUser;
 import com.yuriolivs.notification_service.telegram.domain.enums.TelegramMessages;
 import lombok.AllArgsConstructor;
@@ -36,7 +36,7 @@ public class TelegramMessageService {
         restTemplate.postForEntity(url, body, Void.class);
     }
 
-    public void sendStardardizedMessages(Long chatId, TelegramMessages message) {
+    public void sendStandardizedMessages(Long chatId, TelegramMessages message) {
         String url = String.format(
                 "%s/bot%s/sendMessage",
                 config.getApiUrl(),

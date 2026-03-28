@@ -1,4 +1,4 @@
-package com.yuriolivs.notification_service.config;
+package com.yuriolivs.notification_service.exception;
 
 import com.yuriolivs.notification.shared.exceptions.ErrorResponse;
 import com.yuriolivs.notification.shared.exceptions.http.HttpException;

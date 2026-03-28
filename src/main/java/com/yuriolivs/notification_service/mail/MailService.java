@@ -1,7 +1,7 @@
 package com.yuriolivs.notification_service.mail;
 
 import com.yuriolivs.notification_service.mail.domain.dto.MailDTO;
-import com.yuriolivs.notification_service.config.MailFromProperties;
+import com.yuriolivs.notification_service.config.properties.MailFromProperties;
 import com.yuriolivs.notification_service.mail.domain.dto.OrderTrackingMailDTO;
 import com.yuriolivs.notification_service.mail.domain.dto.ProductEmailDTO;
 import com.yuriolivs.notification.shared.domain.email.enums.EmailTemplate;

@@ -52,28 +52,28 @@ public class TelegramWebhookService {
             case START -> {
                 if (telegramUser.isFirstMessage()) {
                     userService.updateFirstMessage(userId);
-                    messageService.sendStardardizedMessages(chatId, TelegramMessages.WELCOME);
+                    messageService.sendStandardizedMessages(chatId, TelegramMessages.WELCOME);
                 } else {
-                    messageService.sendStardardizedMessages(chatId, TelegramMessages.START);
+                    messageService.sendStandardizedMessages(chatId, TelegramMessages.START);
                 }
             }
             case ACTIVATE -> {
                 if (!telegramUser.isActive()) {
                     userService.toggleNotifications(userId);
-                    messageService.sendStardardizedMessages(chatId, TelegramMessages.REACTIVAED);
+                    messageService.sendStandardizedMessages(chatId, TelegramMessages.REACTIVAED);
                 } else {
-                    messageService.sendStardardizedMessages(chatId, TelegramMessages.ALREADY_ACTIVATED);
+                    messageService.sendStandardizedMessages(chatId, TelegramMessages.ALREADY_ACTIVATED);
                 }
             }
             case CANCEL -> {
                 if (telegramUser.isActive()) {
-                    messageService.sendStardardizedMessages(chatId, TelegramMessages.CANCELLED);
+                    messageService.sendStandardizedMessages(chatId, TelegramMessages.CANCELLED);
                     userService.toggleNotifications(userId);
                 } else {
-                    messageService.sendStardardizedMessages(chatId, TelegramMessages.ALREADY_CANCELLED);
+                    messageService.sendStandardizedMessages(chatId, TelegramMessages.ALREADY_CANCELLED);
                 }
             }
-            default -> messageService.sendStardardizedMessages(chatId, TelegramMessages.UNKNOW_COMMAND);
+            default -> messageService.sendStandardizedMessages(chatId, TelegramMessages.UNKNOW_COMMAND);
         }
     }
 }
